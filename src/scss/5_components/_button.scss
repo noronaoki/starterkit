@@ -1,0 +1,33 @@
+/*************************************
+
+ボタン
+
+*************************************/
+/*
+---
+name: ボタンのベース
+category: components/button
+---
+
+# 色んなボタン
+
+- aBase button style.
+- Use `a` or `button` tag.
+
+```html
+<a class="c-btn">Buttonだよ</a>
+```
+ */
+
+.c-btn {
+  display: block;
+  min-width: 100px;
+  max-width: 200px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #fff;
+}

@@ -1,0 +1,17 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  @include font-family($font-gothic);
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.8;
+  letter-spacing: .1rem;
+  font-feature-settings: "pkna";
+  -webkit-font-smoothing: antialiased;
+}
+
+i {
+  display: inline-block;
+}

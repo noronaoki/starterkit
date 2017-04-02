@@ -1,0 +1,12 @@
+/*************************************
+
+font-family
+
+*************************************/
+@mixin font-family($default, $add: '') {
+  @if $add == '' {
+    font-family: $default;
+  } @else {
+    font-family: $add, $default;
+  }
+}

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/*************************************
+
+1_settings
+色、フォントなどのグローバルで使われる変数を定義する最も抽象度の高いレイヤー。
+
+2_tools
+mixinやfunctionのレイヤー。
+
+3_generic
+リセットとか
+
+4_base
+要素セレクタのみを記述するレイヤー
+
+5_components
+ボタンなどの細かいパーツ
+prefix: c-
+
+6_layout
+ヘッダー、フッターなどのレイアウトを構成するパーツ
+
+7_trumps
+ユーティリティ
+prefix: u-
+
+8_pages
+ページごとの固有指定
+
+*************************************/
+@import "1_settings/*.scss";
+@import "2_tools/*.scss";
+@import "3_generic/*.scss";
+@import "4_base/*.scss";
+@import "5_components/*.scss";
+@import "6_layout/*.scss";
+@import "7_trumps/*.scss";
+@import "8_pages/*.scss";
