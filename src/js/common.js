@@ -1,5 +1,5 @@
 'use strict';
 
-(function(w, d){
+((w, d) => {
   console.log('Hello');
 })(window, document);

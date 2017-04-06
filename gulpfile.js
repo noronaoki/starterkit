@@ -136,7 +136,7 @@ gulp.task('aigis', function() {
 gulp.task('tinypng', function () {
   gulp.src(path.dist.img + '/**/*.{png,jpg,jpeg}')
     .pipe(tinypng({
-      key: '2zKAuzcolROpQ33qrG94ukm4NADC8gma', // API KEY
+      key: '', // API KEY
       log: true
     }))
     .pipe(gulp.dest(path.dist.img));
