@@ -25,14 +25,24 @@ category: components/sprite
 
 ```html
 <i class="sprite-base c-icon-home"></i>
+<i class="sprite-base c-icon-flag"></i>
+<i class="sprite-base c-icon-amazon"></i>
 ```
 
 # Retina向けのアイコン
 ```html
 <i class="sprite-base-retina c-icon-home-retina"></i>
+<i class="sprite-base-retina c-icon-flag-retina"></i>
+<i class="sprite-base-retina c-icon-amazon-retina"></i>
 ```
  */
 .c-icon-home {
+  @include sprite-position($sprite-home);
+  @include sprite-width($sprite-home);
+  @include sprite-height($sprite-home);
+  @include sprite-background-size($sprite-home);
+}
+.c-icon-home-retina {
   @include sprite-position($sprite-home);
   @include sprite-width($sprite-home);
   @include sprite-height($sprite-home);
@@ -43,12 +53,6 @@ category: components/sprite
   @include sprite-width($sprite-flag);
   @include sprite-height($sprite-flag);
   @include sprite-background-size($sprite-flag);
-}
-.c-icon-home-retina {
-  @include sprite-position($sprite-home);
-  @include sprite-width($sprite-home);
-  @include sprite-height($sprite-home);
-  @include sprite-background-size($sprite-home);
 }
 .c-icon-flag-retina {
   @include sprite-position($sprite-flag);
