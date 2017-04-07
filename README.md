@@ -19,8 +19,7 @@ Slim、Sass（scss記法）、Javascriptで構成されたスターターキッ�
 ## 必要なパッケージなどのインストールと準備
 - グローバルに必要なもの
   - node
-    - https://nodejs.org/en/
-    - `v6.10.2 LTS` というやつをダウンロードしてください
+    - https://nodejs.org/en/ `v6.10.2 LTS` というやつをダウンロードしてください
   - npm
     - `npm i -g npm`
   - Gulp
