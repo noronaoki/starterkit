@@ -20,7 +20,7 @@ Slim、Sass（scss記法）、Javascriptで構成されたスターターキッ�
 - グローバルに必要なもの
   - node
     - https://nodejs.org/en/ `v6.10.2 LTS` というやつをダウンロードしてください
-  - npm
+  - npm
     - `npm i -g npm`
   - Gulp
     - `npm i -g gulp`
