@@ -18,16 +18,15 @@ category: components/button
 <a class="c-btn">Buttonだよ</a>
 ```
  */
-
 .c-btn {
   display: block;
   min-width: 100px;
   max-width: 200px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 6px;
   padding: 10px;
   text-align: center;
   text-decoration: none;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
   background-color: #fff;
 }
