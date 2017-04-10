@@ -3,10 +3,13 @@
   $gutter: 8px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   @for $i from 1 through 12 {
     &.column-#{$i} > .grid-cell {
-      flex-basis: 100%;
-      @if $i != 1 {
+      @if $i == 1 {
+        flex-basis: 100%;
+      }
+      @elseif{
         flex-basis: calc(1/#{$i}*100% - #{$gutter});
       }
     }
