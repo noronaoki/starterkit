@@ -11,39 +11,10 @@ head
   script type="text/javascript" src="/dist/js/jquery-3.2.0.min.js"
   link rel="stylesheet" href="/dist/css/style.css" media="all"
 body
-  h1 1column
-  .l-grid.column-1
-    - (1..1).each do |i|
-      .grid-cell
-        .item inner-item.
-
-  h1 2column
-  .l-grid.column-2
-    - (1..2).each do |i|
-      .grid-cell
-        .item inner-item.
-
-  h1 3column
-  .l-grid.column-3
-    - (1..3).each do |i|
-      .grid-cell
-        .item inner-item.
-
-  h1 4column
-  .l-grid.column-4
-    - (1..4).each do |i|
-      .grid-cell
-        .item inner-item.
-
-  h1 5column
-  .l-grid.column-5
-    - (1..5).each do |i|
-      .grid-cell
-        .item inner-item.
-
-  h1 6column
-  .l-grid.column-6
-    - (1..6).each do |i|
-      .grid-cell
-        .item inner-item.
+  - (1..12).each do |i|
+    h1 #{i}column
+    div class = "l-grid column-#{i}"
+      - (1..i).each do |i|
+        .grid-cell
+          .item inner-item.
   script type="text/javascript" src="/dist/js/common.js" async=""
