@@ -1,0 +1,23 @@
+/* Flex Grid */
+.l-grid {
+  $gutter: 8px;
+  display: flex;
+  justify-content: space-between;
+  @for $i from 1 through 12 {
+    &.column-#{$i} > .grid-cell {
+      flex-basis: 100%;
+      @if $i != 1 {
+        flex-basis: calc(1/#{$i}*100% - #{$gutter});
+      }
+    }
+  }
+
+  .item {
+    background-color: rgb(214, 235, 245);
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #33cccc;
+    text-align: center;
+    width: calc(100%-5px);
+  }
+}
