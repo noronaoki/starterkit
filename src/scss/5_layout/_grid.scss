@@ -1,12 +1,58 @@
-/* Flex Grid */
+/*************************************
+
+Flex Grid
+
+*************************************/
+/*
+---
+name: Gridシステム
+category: layout/grid
+---
+
+# Flexを使ったグリッドシステム
+
+```html
+<h1>1カラム</h1>
+<div class="l-grid column-1">
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+</div>
+<h1>2カラム</h1>
+<div class="l-grid column-2">
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+</div>
+<h1>3カラム</h1>
+<div class="l-grid column-3">
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+  <div class="grid-cell">
+    <div class="item">Item.</div>
+  </div>
+</div>
+```
+ */
+
 .l-grid {
   $gutter: 8px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   @for $i from 1 through 12 {
     &.column-#{$i} > .grid-cell {
-      flex-basis: 100%;
-      @if $i != 1 {
+      @if $i == 1 {
+        flex-basis: 100%;
+      }
+      @else{
         flex-basis: calc(1/#{$i}*100% - #{$gutter});
       }
     }

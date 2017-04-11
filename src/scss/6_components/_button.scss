@@ -11,11 +11,16 @@ category: components/button
 
 # 色んなボタン
 
-- aBase button style.
-- Use `a` or `button` tag.
-
 ```html
 <a class="c-btn">Buttonだよ</a>
+```
+
+```html
+<a class="c-btn c-btn__agree">Buttonだよ</a>
+```
+
+```html
+<a class="c-btn c-btn__cancel">Buttonだよ</a>
 ```
  */
 .c-btn {
@@ -29,4 +34,16 @@ category: components/button
   border-style: solid;
   border-radius: 6px;
   background-color: #fff;
+}
+
+.c-btn__agree {
+  color: #fff;
+  border-color: rgb(3, 13, 69);
+  background-color: rgb(0, 75, 201);
+}
+
+.c-btn__cancel {
+  color: #fff;
+  border-color: rgb(136, 13, 13);
+  background-color: rgb(245, 32, 32);
 }
