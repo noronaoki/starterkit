@@ -1,0 +1,106 @@
+/*------------------------------------*\
+  #ページのベース
+\*------------------------------------*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  @include font-family($font-gothic);
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.8;
+  letter-spacing: .1rem;
+  font-feature-settings: "pkna";
+  -webkit-font-smoothing: antialiased;
+}
+/*------------------------------------*\
+  #Table
+\*------------------------------------*/
+table {}
+
+th {}
+
+td,
+th {}
+/*------------------------------------*\
+  #Form
+\*------------------------------------*/
+form {}
+
+fieldset {}
+
+legend {}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+select,
+textarea {
+  &:focus {}
+}
+
+textarea {}
+
+select {
+  &[multiple] {}
+}
+
+button:focus {}
+/*------------------------------------*\
+  #Form
+\*------------------------------------*/
+/*
+ * Headings
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+legend {}
+/*
+ * Paragraphs
+ */
+p {}
+/*
+ * Links
+ */
+a {
+  &:hover {}
+}
+/*
+ * Other
+ */
+small {}
+
+em {}
+
+strong {}
+
+code,
+pre {}
+
+pre {}
+
+abbr {}
+
+del {}
+
+mark {}
+
+figure {}
+
+hr {}
+
+ol,
+ul {}
+
+i {
+  display: inline-block;
+}
