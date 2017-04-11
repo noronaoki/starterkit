@@ -56,7 +56,7 @@ gulp.task('sass', function () {
   .pipe(plumber())
   .pipe(bulkSass())
   .pipe(sourcemaps.init())
-  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+  .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
   .pipe(sourcemaps.write())
   .pipe(autoprefixer({
     browsers: ['last 3 version', 'ie 11']
