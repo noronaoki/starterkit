@@ -1,31 +1,46 @@
 @mixin mq($size) {
-   @if $size == phone-only{
+  @if $size == small-phone-only {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+  @else if $size == iphone6 {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
+  @else if $size == iphone6-plus {
+    @media (max-width: 425px) {
+      @content;
+    }
+  }
+  @else if $size == phone-only {
     @media (max-width: 599px) {
-       @content;
+      @content;
     }
   }
   @else if $size == tablet-portrait-up {
-     @media (min-width: 600px){
+    @media (min-width: 600px){
       @content;
     }
   }
   @else if $size == tablet-portait-only {
-     @media (min-width: 600px) and (max-width: 899px){
+    @media (min-width: 600px) and (max-width: 899px){
       @content;
     }
   }
   @else if $size == tablet-landscape-up {
-     @media (min-width: 900px){
+    @media (min-width: 900px){
       @content;
     }
   }
   @else if $size == tablet-landscape-only {
-     @media (min-width: 900px) and (max-width: 1199px){
+    @media (min-width: 900px) and (max-width: 1199px){
       @content;
     }
   }
   @else if $size == desktop-up {
-     @media (min-width: 1200px){
+    @media (min-width: 1200px){
       @content;
     }
   }

@@ -11,3 +11,6 @@ server:
 
 compress:
 	$(GULP) compress
+
+compile:
+	$(GULP) compile

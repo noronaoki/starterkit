@@ -1,13 +1,9 @@
 var gulp         = require('gulp');
 
-// HTML系
-var slim         = require("gulp-slim");
-
 // CSS系
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var bulkSass     = require('gulp-sass-bulk-import');
-var spritesmith  = require('gulp.spritesmith');
 var autoprefixer = require('gulp-autoprefixer');
 
 // JS系
@@ -18,19 +14,18 @@ var uglify       = require('gulp-uglify');
 var tinypng      = require('gulp-tinypng-compress');
 var plumber      = require('gulp-plumber');
 var browserSync  = require('browser-sync').create();
-var aigis        = require('gulp-aigis');
 
 
 // パス
 var path = {
   src: {
-    slim: 'src/slim',
+    html: 'src',
     css:  'src/scss',
     js:   'src/js',
     img:  'src/img'
   },
   dist: {
-    html: 'dist/html',
+    html: 'dist',
     css:  'dist/css',
     js:   'dist/js',
     img:  'dist/img'
@@ -38,15 +33,27 @@ var path = {
 };
 
 
-// slim
-// https://www.npmjs.com/package/gulp-slim
-gulp.task('slim', function(){
-  gulp.src(path.src.slim + '/*.slim')
-  .pipe(plumber())
-  .pipe(slim({
-    options: "encoding='utf-8'"
-  }))
-  .pipe(gulp.dest(path.dist.html));
+// file copy
+gulp.task('copy-html', function(){
+  return gulp.src(
+    [
+      path.src.html + '/*.html'
+    ]
+  ).pipe(gulp.dest(path.dist.html));
+});
+gulp.task('copy-img', function(){
+  return gulp.src(
+    [
+      path.src.img + '/**'
+    ]
+  ).pipe(gulp.dest(path.dist.img));
+});
+gulp.task('copy-js', function(){
+  return gulp.src(
+    [
+      path.src.js + '/lib/**'
+    ]
+  ).pipe(gulp.dest(path.dist.js));
 });
 
 
@@ -56,36 +63,12 @@ gulp.task('sass', function () {
   .pipe(plumber())
   .pipe(bulkSass())
   .pipe(sourcemaps.init())
-  .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(sourcemaps.write())
   .pipe(autoprefixer({
-    browsers: ['last 3 version', 'ie 11']
+    browsers: ['last 3 version', 'ie >= 11']
   }))
   .pipe(gulp.dest(path.dist.css));
-});
-
-
-// sprite
-// https://www.npmjs.com/package/gulp.spritesmith
-gulp.task('sprite', function () {
-  var spriteData = gulp.src(path.src.img + '/sprite/*.png')
-  .pipe(plumber())
-  .pipe(spritesmith({
-    imgName: 'sprite.png',
-    cssName: '_sprite.scss',
-    imgPath: '#{$path-img}/sprite.png',
-    retinaSrcFilter: path.src.img + '/sprite/*@2x.png',
-    retinaImgName: 'sprite@2x.png',
-    retinaImgPath: '#{$path-img}/sprite@2x.png',
-    // cssFormat: 'scss', // これを書くとRetina用のMixinとかが生成されないバグがある
-    algorithm: 'binary-tree', //結合アルゴリズム(top-down (default), left-right, diagonal, alt-diagonal, binary-tree)
-    padding: 0,
-    cssVarMap: function (sprite) {
-      sprite.name = 'sprite-' + sprite.name;
-    }
-  }));
-  spriteData.img.pipe(gulp.dest(path.dist.img));
-  spriteData.css.pipe(gulp.dest(path.src.css + '/2_tools/'));
 });
 
 
@@ -95,10 +78,10 @@ gulp.task('babel', function() {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel({
-        presets: ['es2015']
+        presets: ['env']
     }))
     .pipe(sourcemaps.write())
-    .pipe(uglify({preserveComments: 'some'}))
+    .pipe(uglify())
     .pipe(gulp.dest(path.dist.js))
 });
 
@@ -113,7 +96,8 @@ gulp.task('browser-sync', function(){
     },
     browser: 'google chrome',
     open: 'external',
-    notify: false
+    notify: false,
+    ghostMode: false
   });
 });
 
@@ -124,19 +108,12 @@ gulp.task('bs-reload', function(){
 });
 
 
-// aigis
-gulp.task('aigis', function() {
-  return gulp.src('./aigis/aigis_config.yml')
-    .pipe(aigis());
-});
-
-
 // tiny png
 // https://www.npmjs.com/package/gulp-tinypng-compress
 gulp.task('tinypng', function () {
   gulp.src(path.dist.img + '/**/*.{png,jpg,jpeg}')
     .pipe(tinypng({
-      key: '', // API KEY
+      key: '2zKAuzcolROpQ33qrG94ukm4NADC8gma', // API KEY
       log: true
     }))
     .pipe(gulp.dest(path.dist.img));
@@ -145,17 +122,19 @@ gulp.task('tinypng', function () {
 
 // watch
 gulp.task('watch', function(){
-  gulp.watch(path.src.slim + '/**/*.slim', ['slim']);
-  gulp.watch(path.src.css + '/**/*.scss', ['sass', 'aigis']);
-  gulp.watch(path.src.img + '/sprite/*.png', ['sprite']);
+  gulp.watch(path.src.html + '/*.html', ['copy-html']);
+  gulp.watch(path.src.img + '/**', ['copy-img']);
+  gulp.watch(path.src.js + '/lib/*.js', ['copy-js']);
   gulp.watch(path.src.js + '/*.js', ['babel']);
-  gulp.watch([path.dist.html + '/**/*.html', path.dist.css + '/**/*.css', path.dist.js + '/**/*.js'], ['bs-reload']);
+  gulp.watch(path.src.css + '/**/*.scss', ['sass']);
+  gulp.watch([path.dist.html + '/*.html', path.dist.css + '/**/*.css', path.dist.js + '/**/*.js'], ['bs-reload']);
 });
 
 
 // default
-gulp.task('default', ['slim', 'sass', 'sprite', 'babel', 'browser-sync', 'watch']);
+gulp.task('default', ['browser-sync', 'watch']);
 
+gulp.task('compile', ['copy-html', 'copy-img', 'copy-js', 'sass', 'babel']);
 
 // compress
 gulp.task('compress', ['tinypng']);

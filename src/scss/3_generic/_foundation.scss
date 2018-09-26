@@ -1,0 +1,122 @@
+/*************************************
+
+ファイルパス
+
+*************************************/
+$path-img: "../img";
+/*************************************
+
+色定義
+
+*************************************/
+// 白
+$white: #fff;
+// 黒系
+$light-gray: #EFF4F8;
+$black: #000;
+// 青
+$blue: #2E6FEA;
+
+/*************************************
+
+フォント定義
+
+*************************************/
+$font-gothic: "Lato", "Hiragino Kaku Gothic ProN", "Proxima Nova", Verdana, "游ゴシック", YuGothic, Meiryo, sans-serif;
+$font-serif: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", serif;
+$font-mac: "Helvetica Neue", Helvetica, "Hiragino Kaku Gothic ProN", Meiryo, fantasy;
+@mixin font-family($default, $add: '') {
+  @if $add == '' {
+    font-family: $default;
+  }
+  @else {
+    font-family: $add, $default;
+  }
+}
+/*!
+ * Element
+ * タグセレクタ
+ */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: $black;
+  background-color: $white;
+  @include font-family($font-gothic);
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  letter-spacing: .07rem;
+  font-feature-settings: "pkna";
+  -webkit-font-smoothing: antialiased;
+  word-break: break-word;
+}
+
+fieldset {
+  border: none;
+}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=submit],
+input[type=tel],
+input[type=text],
+input[type=url],
+button,
+select,
+textarea {
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $light-gray;
+  }
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #1a5fb0;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+  &:visited {
+    color: #b1a865;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+i {
+  display: inline-block;
+}
+
+::selection {
+  background-color: #1a5fb0;
+  color: $white;
+  text-shadow: none;
+}
+
+table {
+  border-collapse: collapse;
+  background-color: $white;
+  width: 100%;
+}
+
+table,
+td,
+th {
+  border: 1px solid $light-gray;
+}
+
+td,
+th {
+  padding: 4px 8px;
+  vertical-align: middle;
+}

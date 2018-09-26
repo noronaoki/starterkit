@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
-@import "1_settings/*.scss";
-@import "2_tools/*.scss";
-@import "3_generic/*.scss";
-@import "4_layout/*.scss";
-@import "5_components/*.scss";
-@import "6_page/*.scss";
-@import "7_trumps/*.scss";
+@import "1_settings/*";
+@import "2_tools/*";
+@import "3_generic/*";
+@import "4_atoms/*";
+@import "5_molecules/*";
+@import "6_organisms/*";
+@import "7_pages/*";
+@import "8_trumps/*";

@@ -1,0 +1,15 @@
+.spacer {
+  padding: 0 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: $blue;
+  padding: 40px 20px;
+  .logo {
+    width: 27vw;
+  }
+  .copy {
+    width: 58vw;
+  }
+}
