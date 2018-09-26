@@ -1,31 +1,31 @@
-var gulp         = require('gulp');
+const gulp         = require('gulp');
 
 // CSS系
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-var bulkSass     = require('gulp-sass-bulk-import');
-var autoprefixer = require('gulp-autoprefixer');
+const sass         = require('gulp-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const bulkSass     = require('gulp-sass-bulk-import');
+const autoprefixer = require('gulp-autoprefixer');
 
 // JS系
-var babel        = require('gulp-babel');
-var uglify       = require('gulp-uglify');
+const babel        = require('gulp-babel');
+const uglify       = require('gulp-uglify');
 
 // その他
-var tinypng      = require('gulp-tinypng-compress');
-var plumber      = require('gulp-plumber');
-var browserSync  = require('browser-sync').create();
+const tinypng      = require('gulp-tinypng-compress');
+const plumber      = require('gulp-plumber');
+const browserSync  = require('browser-sync').create();
 
 
 // パス
-var path = {
+const path = {
   src: {
-    html: 'src',
+    html: 'src/html',
     css:  'src/scss',
     js:   'src/js',
     img:  'src/img'
   },
   dist: {
-    html: 'dist',
+    html: 'dist/html',
     css:  'dist/css',
     js:   'dist/js',
     img:  'dist/img'
@@ -37,7 +37,7 @@ var path = {
 gulp.task('copy-html', function(){
   return gulp.src(
     [
-      path.src.html + '/*.html'
+      path.src.html + '/**/*.html'
     ]
   ).pipe(gulp.dest(path.dist.html));
 });
@@ -78,7 +78,7 @@ gulp.task('babel', function() {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel({
-        presets: ['env']
+        presets: ['@babel/env']
     }))
     .pipe(sourcemaps.write())
     .pipe(uglify())
@@ -122,12 +122,12 @@ gulp.task('tinypng', function () {
 
 // watch
 gulp.task('watch', function(){
-  gulp.watch(path.src.html + '/*.html', ['copy-html']);
+  gulp.watch(path.src.html + '/**/*.html', ['copy-html']);
   gulp.watch(path.src.img + '/**', ['copy-img']);
   gulp.watch(path.src.js + '/lib/*.js', ['copy-js']);
   gulp.watch(path.src.js + '/*.js', ['babel']);
   gulp.watch(path.src.css + '/**/*.scss', ['sass']);
-  gulp.watch([path.dist.html + '/*.html', path.dist.css + '/**/*.css', path.dist.js + '/**/*.js'], ['bs-reload']);
+  gulp.watch([path.dist.html + '/**/*.html', path.dist.css + '/**/*.css', path.dist.js + '/**/*.js'], ['bs-reload']);
 });
 
 
